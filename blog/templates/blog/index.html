@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MyBlog</title>
+</head>
+
+<body>
+    <h2>Welcome to MyBlog!</h2>
+    {% if post_list.all %}
+        <h3>Blog posts:</h3>
+        <ul>
+            {% for post in post_list %}
+                <li>
+                    <a href="/blog/{{ post.id }}/"{{ post.title }}></a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>No posts are available.</h3>
+    {% endif %}
+</body>
+
+</html>
