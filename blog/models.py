@@ -4,7 +4,6 @@ from django.utils import timezone
 
 class Author(models.Model):
     name = models.CharField(max_length=64)
-    surname = models.CharField(max_length=64)
     reg_date = models.DateField(default=timezone.now)
 
 
