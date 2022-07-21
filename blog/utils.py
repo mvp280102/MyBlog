@@ -1,2 +1,3 @@
-index_context = {'home': True, 'title': 'MyBlog - Home', 'header': 'Recent blog posts:'}
-archive_context = {'home': False, 'title': 'MyBlog - Archive', 'header': 'All blog posts:'}
+index_context = {'title': 'Home'}
+authors_context = {'title': 'Authors', 'header': 'All authors:', 'message': 'authors'}
+posts_context = {'title': 'Posts', 'header': 'All posts:', 'message': 'posts'}
