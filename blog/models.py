@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -14,6 +15,9 @@ class Post(models.Model):
     pub_date = models.DateField(default=timezone.now)
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
+
+    def get_absolute_url(self):
+        return reverse('blog:index')
 
 
 class Comment(models.Model):
