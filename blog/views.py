@@ -1,33 +1,34 @@
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
-from .models import Post
+from .models import Author, Post
 
 
 class IndexView(ListView):
     template_name = 'blog/index.html'
-    context_object_name = 'post_list'
+    context_object_name = 'lists'
 
     def get_queryset(self):
-        return Post.objects.order_by('-pub_date')[:5]
+        return Author.objects.order_by('-reg_date')[:5], Post.objects.order_by('-pub_date')[:5]
 
 
-class ArchiveView(ListView):
-    template_name = 'blog/index.html'
-    context_object_name = 'post_list'
+class AuthorsView(ListView):
+    template_name = 'blog/authors.html'
+    context_object_name = 'list'
+
+    def get_queryset(self):
+        return Author.objects.order_by('-reg_date')
+
+
+class AuthorDetailView(DetailView):
+    model = Author
+    template_name = 'blog/detail.html'
+
+
+class PostsView(ListView):
+    template_name = 'blog/posts.html'
+    context_object_name = 'list'
 
     def get_queryset(self):
         return Post.objects.order_by('-pub_date')
-
-
-class PostCreateView(CreateView):
-    model = Post
-    template_name = 'blog/create.html'
-    fields = ['author', 'title', 'text']
-
-
-class PostEditView(UpdateView):
-    model = Post
-    template_name = 'blog/edit.html'
-    fields = ['title', 'text']
 
 
 class PostDetailView(DetailView):
