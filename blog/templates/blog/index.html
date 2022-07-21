@@ -1,25 +1,43 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>MyBlog</title>
+    <title>{{ title }}</title>
 </head>
 
 <body>
     <h2>Welcome to MyBlog!</h2>
+
     {% if post_list.all %}
-        <h3>Blog posts:</h3>
+        <h3>{{ header }}</h3>
         <ul>
             {% for post in post_list %}
                 <li>
-                    <a href="{% url 'blog:detail' post.id %}">{{ post.title }} by {{ post.author.name }} from {{ post.pub_date }}.</a>
+                    <a href="{% url 'blog:post_detail' post.id %}">{{ post.title }} by {{ post.author.name }} from {{ post.pub_date }}.</a>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
         <h3>No posts are available.</h3>
     {% endif %}
+
+    {% if home %}
+        <form action="{% url 'blog:archive' %}">
+            <button>Show all posts</button>
+        </form>
+    {% else %}
+        <form action="{% url 'blog:index' %}">
+            <button>Back to home</button>
+        </form>
+    {% endif %}
+
+    <br>
+
+    <form action="{% url 'blog:post_create' %}">
+        <button>Create new post</button>
+    </form>
 </body>
 
 </html>
