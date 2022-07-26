@@ -1,5 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from .models import Author, Post
+from .utils import authors_context, posts_context
 
 
 class IndexView(ListView):
@@ -17,6 +18,11 @@ class AuthorsView(ListView):
     def get_queryset(self):
         return Author.objects.order_by('-reg_date')
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(AuthorsView, self).get_context_data(**kwargs)
+        context.update(authors_context)
+        return context
+
 
 class AuthorDetailView(DetailView):
     model = Author
@@ -29,6 +35,11 @@ class PostsView(ListView):
 
     def get_queryset(self):
         return Post.objects.order_by('-pub_date')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PostsView, self).get_context_data(**kwargs)
+        context.update(posts_context)
+        return context
 
 
 class PostDetailView(DetailView):
