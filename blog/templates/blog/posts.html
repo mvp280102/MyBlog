@@ -1,5 +1,5 @@
 {% extends 'base_list.html' %}
 
 {% block item %}
-    <a href="{% url 'blog:post_detail' item.id %}">{{ item.title }} by {{ item.author }} from {{ item.pub_date }}.</a>
+    <a href="{% url 'blog:post_detail' item.id %}">{{ item.title }} by {{ item.author.name }} from {{ item.pub_date }}.</a>
 {% endblock %}
