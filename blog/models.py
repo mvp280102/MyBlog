@@ -1,11 +1,13 @@
 from django.db import models
-from django.urls import reverse
 from django.utils import timezone
 
 
 class Author(models.Model):
     name = models.CharField(max_length=64)
     reg_date = models.DateField(default=timezone.now)
+
+    def get_posts_amount(self):
+        return Post.objects.filter(author__post=self.name).count()
 
 
 class Post(models.Model):
@@ -15,9 +17,6 @@ class Post(models.Model):
     pub_date = models.DateField(default=timezone.now)
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
-
-    def get_absolute_url(self):
-        return reverse('blog:index')
 
 
 class Comment(models.Model):
