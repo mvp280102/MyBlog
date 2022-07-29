@@ -5,14 +5,11 @@
         <h3>{{ header }}</h3>
         <ul>
             {% for item in list %}
-                <li>
-                    {% block item %}{% endblock %}
-                </li>
+                <li>{% block item %}{% endblock %}</li>
             {% endfor %}
         </ul>
     {% else %}
         <h3>No {{ message }} yet.</h3>
     {% endif %}
-
     {% block buttons %}{% endblock %}
 {% endblock %}

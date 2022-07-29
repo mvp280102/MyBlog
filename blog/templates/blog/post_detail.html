@@ -6,6 +6,6 @@
 
 {% block content %}
     <h2>{{ post.title }} by {{ post.author.name }} from {{ post.pub_date }}</h2>
-    {{ post.text }}
+    <p>{{ post.text }}</p>
     <h3>{{ post.likes }} likes / {{ post.dislikes }} dislikes</h3>
 {% endblock %}
