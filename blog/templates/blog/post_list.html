@@ -1,5 +1,7 @@
 {% extends 'base_list.html' %}
 
+{# Set title in utils.py. #}
+
 {% block item %}
-    <a href="{% url 'blog:post_detail' item.id %}">{{ item.title }} by {{ item.author.name }} from {{ item.pub_date }}.</a>
+    <li><a href="{% url 'blog:post_detail' item.id %}">{{ item.title }} by {{ item.author.name }} from {{ item.pub_date }}.</a></li>
 {% endblock %}

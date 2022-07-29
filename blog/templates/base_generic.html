@@ -16,20 +16,26 @@
 
 <body>
     <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2">
-            {% block sidebar %}
-                <ul class="sidebar-nav">
-                    <li><a href="{% url 'blog:index' %}">Home</a></li>
-                    <li><a href="{% url 'blog:authors' %}">All authors</a></li>
-                    <li><a href="{% url 'blog:posts' %}">All posts</a></li>
-                </ul>
-            {% endblock %}
+        <div class="row">
+            <div class="col-sm-2">
+                {% block sidebar %}
+                    <ul class="sidebar-nav">
+                        <li><a href="{% url 'blog:index' %}">Home</a></li>
+                        <li><a href="{% url 'blog:authors' %}">All authors</a></li>
+                        <li><a href="{% url 'blog:posts' %}">All posts</a></li>
+                    </ul>
+                    {% if user.is_authenticated %}
+                        <li>User: {{ user.get_username }}</li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                {% endblock %}
+            </div>
+            <div class="col-sm-10 ">
+                {% block content %}{% endblock %}
+            </div>
         </div>
-        <div class="col-sm-10 ">
-            {% block content %}{% endblock %}
-        </div>
-    </div>
     </div>
 </body>
 
